@@ -30,12 +30,12 @@ const tableRouter = {
     //   name: 'InlineEditTable',
     //   meta: { title: 'Inline Edit' }
     // },
-    {
-      path: 'complex-table',
-      component: () => import('@/views/table/complex-table'),
-      name: 'ComplexTable',
-      meta: { title: 'Complex Table' }
-    },
+    // {
+    //   path: 'complex-table',
+    //   component: () => import('@/views/table/complex-table'),
+    //   name: 'ComplexTable',
+    //   meta: { title: 'Complex Table' }
+    // },
     {
       path: 'log-bug',
       component: () => import('@/views/table/log-bug'),
@@ -59,12 +59,6 @@ const tableRouter = {
       component: () => import('@/views/table/data-upload'),
       name: 'DataUpload',
       meta: { title: '文件上传' }
-    },
-    {
-      path: 'picture-show',
-      component: () => import('@/views/table/picture-show'),
-      name: 'PictureShow',
-      meta: { title: '图片展示' }
     }
   ]
 }

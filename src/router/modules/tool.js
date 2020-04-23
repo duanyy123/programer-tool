@@ -35,6 +35,12 @@ const toolRouter = {
       component: () => import('@/views/tool/sql-helper'),
       name: 'SQLHelper',
       meta: { title: '常用SQL' }
+    },
+    {
+      path: 'weekreport-create',
+      component: () => import('@/views/tool/weekreport-create'),
+      name: 'WeekReport',
+      meta: { title: '周报生成器' }
     }
   ]
 }
