@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>O2O常用命令</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<base href='file:\\\C:\Users\1\Desktop\编程相关\'/>
+</head>
+<body>
+<h2>1.刷淘宝姓名错误单</h2>
+<h3>1.查到该订单号下所有单，选择创建时间最近的单</h3>
+<pre><code>select * from PLATFORM_ORI_ORDER where PLATFORM_ORDER_ID='' and PLATFORM_ORI_SEQ_ID=''
+</code></pre>
+
+<h3>2.复制后面的条件，进行更新（注意，分号要保留）</h3>
+<pre><code>declare
+ v_clob clob :='';
+begin
+  update PLATFORM_ORI_ORDER  set order_data = v_clob,HAS_EXCEPTION='N',STATUS_ID='INITIAL_STATE' where PLATFORM_ORDER_ID='' and PLATFORM_ORI_SEQ_ID='';
+end;
+</code></pre>
+
+<h2>2.查看定时任务错误：</h2>
+<pre><code> SELECT
+QRTZ_TRIGGER_LOG.JOB_NAME,
+--  DISTINCT(QRTZ_TRIGGER_LOG.JOB_NAME),
+rownum,HANDLE_TIME,QRTZ_TRIGGER_LOG.HANDLE_MSG
+FROM
+    QRTZ_TRIGGER_LOG
+WHERE
+    ROWNUM &lt; 100
+AND HANDLE_STATUS = 'FAIL'
+AND JOB_NAME NOT IN (
+    '3W-补仓单',
+        '3W-零售订单',
+        '3W-零售退货订单',
+    '抓单定时任务（退款-万和绯鸟品牌店）',
+    '抓单定时任务（退款-江苏苏宁易购电子商务有限公司）',
+    '抓单定时任务（万和京东壁挂炉）'
+)
+AND to_char(HANDLE_TIME,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd')
+order by HANDLE_TIME desc;
+</code></pre>
+
+<h2>3.税率单条更新</h2>
+<pre><code>update INVOICE_ORDER_ITEM 
+set TARIFF='0.13' where 
+INVOICE_SEQ_ID in(
+select INVOICE_ORDER_ITEM.INVOICE_SEQ_ID from INVOICE_ORDER_ITEM
+,(select
+    invo.INVOICE_SEQ_ID
+     from invoice_order invo where invo.invoice_type_enum_id='ELEC_INVOICE' 
+     and (invo.status_id='INVOICE_INIT' or invo.status_id='INVOICE_WAIT_DELIVER' or invo.status_id='INVOICE_FAIL')
+     and invo.op_status='INVOICE_UNLOCK' ) invoa
+where INVOICE_ORDER_ITEM.INVOICE_SEQ_ID in INVOA.INVOICE_SEQ_ID
+-- and INVOICE_ORDER_ITEM.INVOICE_SEQ_ID='XDFP1609220150'
+)
+</code></pre>
+
+<h2>4.补增导入省市区处理</h2>
+<h3>查找物流宝信息无省市区的</h3>
+<pre><code>select O2O_ERROR_INFO from WLB_ORDER where O2O_ERROR_INFO is not null;
+</code></pre>
+
+<h3>查看哪些信息没有，根据地址去百度搜，然后去COUNTY表找</h3>
+<pre><code>   SELECT O2O_ERROR_INFO from WLB_ORDER where O2O_ERROR_INFO is not null and O2O_ERROR_INFO like '%地址%'
+and ENTRY_DATE &gt;= SYSDATE-12
+</code></pre>
+
+<hr />
+<pre><code>select ATTN_NAME,ATTN_PHONE,ATTN_TEL,PROVINCE_ID,CITY_ID,COUNTY_ID,DETAIL_ADDRESS,address from RETAIL_ORDER_ADDRESS 
+where ORDER_ID='XDRO1905011417'
+</code></pre>
+
+<hr />
+<pre><code>select * from COUNTY where CITY_NAME=''
+</code></pre>
+
+<h3>然后把相应信息补全RETAIL_ORDER_ADDRESS</h3>
+<pre><code>update RETAIL_ORDER_ADDRESS set COUNTY_ID='' where ORDER_ID=''
+</code></pre>
+
+<h2>5.物流单导入</h2>
+<h3>导入（注意核对条数！！！）</h3>
+<pre><code>按照省，市，首重重量，首重金额，续重重量，续重金额导入LOGISTIC_IMPORT_TABLE，注意！！！删除旧数据
+</code></pre>
+
+<h3>填写省（注意省代码导入后应该不为空！！！！）</h3>
+<pre><code>merge into LOGISTIC_IMPORT_TABLE a
+
+using (
+        SELECT
+            PROVINCE_ID,
+            LOGISTIC_IMPORT_TABLE.o_province_name
+        FROM
+            PROVINCE,
+            LOGISTIC_IMPORT_TABLE
+        WHERE
+            PROVINCE_NAME LIKE CONCAT (
+                LOGISTIC_IMPORT_TABLE.o_province_name,
+                '%'
+            ) 
+    ) b
+
+on(a.o_province_name=b.o_province_name)  
+
+when matched then update set a.sys_province_id=b.PROVINCE_ID;
+</code></pre>
+
+<h3>填写市（注意市代码导入后应该不为空！！！！）</h3>
+<pre><code>merge into LOGISTIC_IMPORT_TABLE a
+
+using (
+        SELECT
+            CITY_ID,
+            LOGISTIC_IMPORT_TABLE.o_city_name
+        FROM
+            CITY,
+            LOGISTIC_IMPORT_TABLE
+        WHERE
+            LOGISTIC_IMPORT_TABLE.o_city_name is not null
+            and CITY_NAME LIKE CONCAT (
+                LOGISTIC_IMPORT_TABLE.o_city_name,
+                '%'
+            ) 
+    ) b
+
+on(a.o_city_name=b.o_city_name)  
+
+when matched then update set a.sys_city_id=b.CITY_ID;
+</code></pre>
+
+<h3>查找备份旧的</h3>
+<pre><code>select * from LOGISTIC_RULE_WEIGHT where RULE_ENUM_ID=''
+</code></pre>
+
+<h3>删除旧的</h3>
+<pre><code>delete from LOGISTIC_RULE_WEIGHT where RULE_ENUM_ID=''
+</code></pre>
+
+<h3>插入新的</h3>
+<pre><code>declare
+
+CURSOR c_mail IS select  sys_province_id,
+         sys_city_id,
+         first_weight,
+         first_amount,
+         next_weight,
+         next_amount
+from LOGISTIC_IMPORT_TABLE;
+
+
+BEGIN  
+ FOR c1 IN  c_mail LOOP 
+INSERT INTO LOGISTIC_RULE_WEIGHT (
+        ID,
+        RULE_ENUM_ID,
+        PROVINCE_ID,
+        CITY_ID,
+        FIRST_WEIGHT,
+        FIRST_AMOUNT,
+        NEXT_WEIGHT,
+        NEXT_AMOUNT
+    )
+VALUES
+    (
+        (
+            SELECT
+                MAX (
+                    TO_NUMBER (LOGISTIC_RULE_WEIGHT. ID)
+                ) + 1
+            FROM
+                LOGISTIC_RULE_WEIGHT
+        ),
+--此处按需填写规则名称，注意！！！！操作完请确定数量正确，如果原表有，需先删除delete from LOGISTIC_RULE_WEIGHT where RULE_ENUM_ID=
+        ,
+        c1.sys_province_id,
+        c1.sys_city_id,
+        c1.first_weight,
+        c1.first_amount,
+        c1.next_weight,
+        c1.next_amount
+    ) ;
+
+ END LOOP;
+delete from logistic_import_table;
+end;
+</code></pre>
+
+<h3>正式环境导出</h3>
+<p><code>select * from LOGISTIC_RULE_WEIGHT where RULE_ENUM_ID=''</code></p>
+<h3>将导出语句的表名替换成 LOGISTIC_RULE_WEIGHT，id替换成</h3>
+<p><code>(SELECT MAX (TO_NUMBER (LOGISTIC_RULE_WEIGHT.ID)) + 1 FROM LOGISTIC_RULE_WEIGHT)</code></p>
+<h3>测试环境试，注意条数</h3>
+<pre><code> delete from LOGISTIC_RULE_WEIGHT where RULE_ENUM_ID='';
+--插入语句。。。。。
+select * from LOGISTIC_RULE_WEIGHT where RULE_ENUM_ID='';
+</code></pre>
+
+<h3>拷贝此语句到正式环境，执行</h3>
+<h2>管易诺好店的单错误流入</h2>
+<pre><code>UPDATE PLATFORM_ORI_ORDER
+SET STATUS_ID = 'CONVERT_SUCCESS',
+ HAS_EXCEPTION = 'N'
+WHERE 1=1
+    and SALES_CHANNEL_MENU_ID='GUANYIERP'
+     and PLATFORM_ORDER_ID = ''
+</code></pre>
+
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

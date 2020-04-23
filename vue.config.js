@@ -36,6 +36,15 @@ module.exports = {
       warnings: false,
       errors: true
     },
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://127.0.0.1:6623',
+    //     pathRewrite: {
+    //       '^/api': ''
+    //     },
+    //     changeOrigin: true
+    //   }
+    // },
     before: require('./mock/mock-server.js')
   },
   configureWebpack: {
@@ -83,7 +92,7 @@ module.exports = {
     config
       // https://webpack.js.org/configuration/devtool/#development
       .when(process.env.NODE_ENV === 'development',
-        config => config.devtool('cheap-source-map')
+        config => config.devtool('eval-source-map')
       )
 
     config

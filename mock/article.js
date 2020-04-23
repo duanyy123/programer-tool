@@ -29,7 +29,7 @@ for (let i = 0; i < count; i++) {
 
 export default [
   {
-    url: '/vue-element-admin/article/list',
+    url: '/programmer-notes/article/list',
     type: 'get',
     response: config => {
       const { importance, type, title, page = 1, limit = 20, sort } = config.query
@@ -58,7 +58,7 @@ export default [
   },
 
   {
-    url: '/vue-element-admin/article/detail',
+    url: '/programmer-notes/article/detail',
     type: 'get',
     response: config => {
       const { id } = config.query
@@ -74,7 +74,7 @@ export default [
   },
 
   {
-    url: '/vue-element-admin/article/pv',
+    url: '/programmer-notes/article/pv',
     type: 'get',
     response: _ => {
       return {
@@ -92,7 +92,7 @@ export default [
   },
 
   {
-    url: '/vue-element-admin/article/create',
+    url: '/programmer-notes/article/create',
     type: 'post',
     response: _ => {
       return {
@@ -103,7 +103,7 @@ export default [
   },
 
   {
-    url: '/vue-element-admin/article/update',
+    url: '/programmer-notes/article/update',
     type: 'post',
     response: _ => {
       return {

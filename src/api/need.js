@@ -1,10 +1,11 @@
+import request2 from '@/utils/request2'
 import request from '@/utils/request'
 
-export function fetchList(query) {
-  return request({
-    url: '/programmer-notes/article/list',
+export function getPage(query) {
+  return request2({
+    url: '/need/list',
     method: 'get',
-    params: query
+    params: { data: JSON.stringify(query).replace("\'", '"') }
   })
 }
 
@@ -24,18 +25,19 @@ export function fetchPv(pv) {
   })
 }
 
-export function createArticle(data) {
-  return request({
-    url: '/programmer-notes/article/create',
+export function save(data) {
+  return request2({
+    url: '/need/update',
     method: 'post',
     data
   })
 }
 
-export function updateArticle(data) {
-  return request({
-    url: '/programmer-notes/article/update',
+export function deleteData(data) {
+  return request2({
+    url: '/need/delete',
     method: 'post',
     data
   })
 }
+
