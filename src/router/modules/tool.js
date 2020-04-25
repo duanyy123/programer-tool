@@ -9,7 +9,7 @@ const toolRouter = {
   name: 'Tool',
   meta: {
     title: '实用工具',
-    icon: 'table'
+    icon: 'link'
   },
   children: [
     {
@@ -34,7 +34,7 @@ const toolRouter = {
       path: 'sql-helper',
       component: () => import('@/views/tool/sql-helper'),
       name: 'SQLHelper',
-      meta: { title: '常用SQL' }
+      meta: { title: '常用SQL', affix: true }
     },
     {
       path: 'weekreport-create',

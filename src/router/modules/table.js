@@ -5,11 +5,11 @@ import Layout from '@/layout'
 const tableRouter = {
   path: '/table',
   component: Layout,
-  redirect: '/table/complex-table',
+  redirect: '/table/log-bug',
   name: 'Table',
   meta: {
     title: '异常数据记录',
-    icon: 'table'
+    icon: 'list'
   },
   children: [
     // {

@@ -11,7 +11,7 @@ export default {
   name: 'SQLHelper',
   data() {
     return {
-      reportUrl: 'http://localhost:6623/pages/o2o.html'
+      reportUrl: 'http://localhost:6623/static/pages/o2o.html'
     }
   },
   created() {

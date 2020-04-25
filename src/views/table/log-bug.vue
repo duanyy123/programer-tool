@@ -137,12 +137,12 @@
         <el-form-item label="反思" prop="think">
           <el-input v-model="temp.think" :autosize="{ minRows: 2, maxRows: 4}" type="textarea" placeholder="请输入" />
         </el-form-item>
-        <el-form-item label="是否有图">
+        <el-form-item v-if="temp.id" label="是否有图">
           <el-select v-model="temp.needPicture" class="filter-item" placeholder="请选择">
             <el-option v-for="item in pictureOptions" :key="item.code" :label="item.name" :value="item.code" />
           </el-select>
         </el-form-item>
-        <el-form-item label="有无SQL">
+        <el-form-item v-if="temp.id" label="有无SQL">
           <el-select v-model="temp.needSQL" class="filter-item" placeholder="请选择">
             <el-option v-for="item in sqlOptions" :key="item.code" :label="item.name" :value="item.code" />
           </el-select>
@@ -195,11 +195,13 @@
         class="upload-demo"
         action="http://localhost:6623/upload/multifileUpload"
         :file-list="fileList"
-        :on-preview="handlePreview"
+        list-type="picture-card"
+        :on-preview="handlePictureCardPreview"
         :on-remove="handleRemove"
         :auto-upload="false"
         :data="extraData"
         :name="uploadName"
+        :on-success="handleAvatarSuccess"
       >
         <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
         <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
@@ -345,6 +347,11 @@ export default {
       }
       return fmt
     },
+    handleAvatarSuccess(response, file, fileList) {
+      if (response.code === 20000) {
+        this.temp.errorPhotoUrl = response.data.errorPhotoUrl
+      }
+    },
     getList() {
       this.listLoading = true
       getPage(this.listQuery).then(response => {
@@ -428,8 +435,11 @@ export default {
     handleRemove(file, fileList) {
       console.log(file, fileList)
     },
-    handlePreview(file) {
-      console.log(file)
+    handlePictureCardPreview(file) {
+      if (this.temp.id) {
+        const index = this.fileList.findIndex(f => f.url === file.url)
+        this.lookPhotoPreview(this.temp.id, index)
+      }
     },
     handleCreate() {
       this.resetTemp()
@@ -466,22 +476,35 @@ export default {
         }, 1.5 * 1000)
       })
     },
+    lookPhotoPreview(id, index) {
+      getPhotoList(id).then(response => {
+        var tempImgList = [...response.data.items]
+        var temp = []
+        for (let i = 0; i < index; i++) {
+          temp.push(tempImgList.shift())
+        }
+        this.photos = tempImgList.concat(temp)
+        this.showViewer = true
+        setTimeout(() => {
+        }, 1.5 * 1000)
+      })
+    },
     editPicture() {
       var id = this.temp.id
       this.extraData = { type: 'UP_B_PIC', id: id }
-      if (id) {
+      if (this.temp.errorPhotoUrl) {
         getPhotoList(id).then(response => {
           this.photos = response.data.items
           this.fileList = []
           for (var index in this.photos) {
             var photo = this.photos[index]
-            var filePart = photo.split('/')
-            var name = filePart[filePart.length - 1]
-            var dir = photo.substr(0, photo.length - name.length)
-            this.fileList[index] = { name: name, url: dir }
-            this.dialogUploadVisible = true
+            this.fileList[index] = { url: photo }
           }
+          this.dialogUploadVisible = true
         })
+      } else {
+        this.fileList = []
+        this.dialogUploadVisible = true
       }
     },
     saveSQL() {
@@ -490,11 +513,13 @@ export default {
       var sqlData = { id: id, solvedSqlUrl: content }
       updateSQL(sqlData).then(response => {
         this.dialogSQLVisible = false
-        this.temp.solvedSqlUrl = content
-        const index = this.list.findIndex(v => v.id === this.temp.id)
-        this.temp.needPicture = this.temp.errorPhotoUrl ? 1 : 0
-        this.temp.needSQL = this.temp.solvedSqlUrl ? 1 : 0
-        this.list.splice(index, 1, this.temp)
+        if (response.code === 20000) {
+          this.temp = response.data
+          this.temp.solvedSqlUrl = content
+          const index = this.list.findIndex(v => v.id === this.temp.id)
+          this.temp.needSQL = this.temp.solvedSqlUrl ? 1 : 0
+          this.list.splice(index, 1, this.temp)
+        }
       })
     },
     editSQL() {
@@ -527,7 +552,8 @@ export default {
       this.lookPhoto(id)
     },
     handleSQL(row) {
-      var id = Object.assign({}, row).id
+      this.temp = Object.assign({}, row)
+      var id = this.temp.id
       getSQLData(id).then(response => {
         this.sqlContent = response.data
         this.dialogSQLVisible = true

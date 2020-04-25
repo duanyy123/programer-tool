@@ -1,47 +1,83 @@
-<template xmlns:overflow="http://www.w3.org/1999/xhtml">
+<template>
   <div class="app-container">
-    <el-upload
-      ref="upload"
-      class="upload-demo"
-      action="http://localhost:6623/upload/multifileUpload"
-      :on-preview="handlePreview"
-      :on-remove="handleRemove"
-      :file-list="fileList"
-      :auto-upload="false"
-      :data="extraData"
-      :name="uploadName"
-    >
-      <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
-      <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
-      <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-    </el-upload>
+    <el-form :model="form">
+      <el-form-item label="上传图片" :label-width="formLabelWidth">
+        <el-upload
+          ref="upload"
+          action="#"
+          accept="image/png,image/gif,image/jpg,image/jpeg"
+          list-type="picture-card"
+          :limit="limitNum"
+          :auto-upload="false"
+          :on-exceed="handleExceed"
+          :before-upload="handleBeforeUpload"
+          :on-preview="handlePictureCardPreview"
+          :on-remove="handleRemove"
+        >
+          <i class="el-icon-plus" />
+        </el-upload>
+        <el-dialog :visible.sync="dialogVisible">
+          <img width="100%" :src="dialogImageUrl" alt="">
+        </el-dialog>
+      </el-form-item>
+      <el-form-item>
+        <el-button size="small" type="primary" @click="uploadFile">立即上传</el-button>
+        <el-button size="small">取消</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
 <script>
 export default {
   name: 'DataUpload',
-  uploadName: 'fileName',
   data() {
     return {
-      extraData: { type: 'test', id: '1' },
-      fileList: [{ name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }, { name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }]
+      dialogImageUrl: '',
+      dialogVisible: false,
+      formLabelWidth: '80px',
+      limitNum: 3,
+      form: {}
     }
   },
   methods: {
-    submitUpload() {
-      this.$refs.upload.submit()
+    // 上传文件之前的钩子
+    handleBeforeUpload(file) {
+      console.log('before')
+      if (!(file.type === 'image/png' || file.type === 'image/gif' || file.type === 'image/jpg' || file.type === 'image/jpeg')) {
+        this.$notify.warning({
+          title: '警告',
+          message: '请上传格式为image/png, image/gif, image/jpg, image/jpeg的图片'
+        })
+      }
+      const size = file.size / 1024 / 1024 / 2
+      if (size > 2) {
+        this.$notify.warning({
+          title: '警告',
+          message: '图片大小必须小于2M'
+        })
+      }
     },
+    // 文件超出个数限制时的钩子
+    handleExceed(files, fileList) {
+
+    },
+    // 文件列表移除文件时的钩子
     handleRemove(file, fileList) {
       console.log(file, fileList)
     },
-    handlePreview(file) {
-      console.log(file)
+    // 点击文件列表中已上传的文件时的钩子
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url
+      this.dialogVisible = true
+    },
+    uploadFile() {
+      this.$refs.upload.submit()
     }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>
