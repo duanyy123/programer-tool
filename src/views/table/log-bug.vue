@@ -214,7 +214,16 @@
     </el-dialog>
   </div>
 </template>
-
+<style>
+   .el-upload-list__item {
+      transition: none !important;
+    }
+  .fixed-width .el-button--mini {
+    padding: 2px 2px;
+    width: 40px;
+    margin: 4px;
+}
+</style>
 <script>
 
 import { getPage, fetchPv, save, deleteData, getPhotoList, getSQLData, updateSQL } from '@/api/business'
@@ -630,10 +639,3 @@ export default {
 }
 </script>
 
-<style>
-.fixed-width .el-button--mini {
-    padding: 2px 2px;
-    width: 40px;
-    margin: 4px;
-}
-</style>

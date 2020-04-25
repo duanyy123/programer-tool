@@ -1,7 +1,7 @@
 <template xmlns:overflow="http://www.w3.org/1999/xhtml">
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.need_data" placeholder="内容" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-input v-model="listQuery.needDataSimilar" placeholder="内容" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
       <el-select v-model="listQuery.systemName" placeholder="系统" clearable class="filter-item" style="width: 130px">
         <el-option v-for="item in sourceSelectOptions" :key="item" :label="item" :value="item" />
       </el-select>
@@ -210,7 +210,7 @@ export default {
         createTime: undefined,
         solveWay: '',
         errorHeart: '',
-        needData: undefined,
+        needDataSimilar: undefined,
         needUrl: undefined,
         developers: undefined,
         finishTime: undefined,

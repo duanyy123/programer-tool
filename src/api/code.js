@@ -9,6 +9,14 @@ export function getPage(query) {
   })
 }
 
+export function getPhotoList(id) {
+  return request2({
+    url: '/code/getPhotoList',
+    method: 'get',
+    params: { id }
+  })
+}
+
 export function fetchArticle(id) {
   return request({
     url: '/programmer-notes/article/detail',

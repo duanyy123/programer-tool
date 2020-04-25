@@ -37,6 +37,12 @@ const blogRouter = {
       component: () => import('@/views/blog/code-blog'),
       name: 'CodeBlog',
       meta: { title: '编程笔记' }
+    }, {
+      path: 'create',
+      component: () => import('@/views/blog/create-blog'),
+      name: 'CreateBlog',
+      meta: { title: '新建笔记', icon: 'edit' },
+      hidden: true
     }
   ]
 }

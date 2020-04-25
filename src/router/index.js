@@ -77,15 +77,15 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/tool/sql-helper'
-    // children: [
-    //   {
-    //     path: 'dashboard',
-    //     component: () => import('@/views/dashboard/index'),
-    //     name: 'Dashboard',
-    //     meta: { title: 'Dashboard', icon: 'dashboard' }
-    //   }
-    // ]
+    redirect: '/tool/sql-helper',
+    children: [
+      // {
+      //   path: 'dashboard',
+      //   component: () => import('@/views/dashboard/index'),
+      //   name: 'Dashboard',
+      //   meta: { title: 'Dashboard', icon: 'dashboard' }
+      // }
+    ]
   }
   // {
   //   path: '/documentation',
@@ -192,38 +192,39 @@ export const asyncRoutes = [
   componentsRouter,
   // chartsRouter,
   // nestedRouter,
-  //
-  // {
-  //   path: '/example',
-  //   component: Layout,
-  //   redirect: '/example/list',
-  //   name: 'Example',
-  //   meta: {
-  //     title: 'Example',
-  //     icon: 'example'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'create',
-  //       component: () => import('@/views/example/create'),
-  //       name: 'CreateArticle',
-  //       meta: { title: 'Create Article', icon: 'edit' }
-  //     },
-  //     {
-  //       path: 'edit/:id(\\d+)',
-  //       component: () => import('@/views/example/edit'),
-  //       name: 'EditArticle',
-  //       meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
-  //       hidden: true
-  //     },
-  //     {
-  //       path: 'list',
-  //       component: () => import('@/views/example/list'),
-  //       name: 'ArticleList',
-  //       meta: { title: 'Article List', icon: 'list' }
-  //     }
-  //   ]
-  // },
+
+  {
+    path: '/example',
+    component: Layout,
+    redirect: '/example/list',
+    name: 'Example',
+    meta: {
+      title: 'Example',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/example/create'),
+        name: 'CreateArticle',
+        meta: { title: 'Create Article', icon: 'edit' },
+        hidden: true
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/example/edit'),
+        name: 'EditArticle',
+        meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/example/list'),
+        name: 'ArticleList',
+        meta: { title: 'Article List', icon: 'list' }
+      }
+    ]
+  },
 
   // {
   //   path: '/tab',

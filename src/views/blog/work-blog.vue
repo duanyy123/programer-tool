@@ -1,24 +1,63 @@
 <template>
   <div class="app-container">
-    <div class="filter-container" />
-    <el-table
-      :key="tableKey"
-      v-loading="listLoading"
-      :data="list"
-      border
-      highlight-current-row
-      style="width: 99.9%;"
-      :span-method="arraySpanMethod"
-    >
-      <el-table-column />
-    </el-table>
+    <div class="filter-container">
+      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="getList">
+        查找
+      </el-button>
+      <router-link :to="'/blog/create'">
+        <el-button class="filter-item" type="primary" icon="el-icon-edit">
+          新建
+        </el-button>
+      </router-link>
+    </div>
+    <div v-for="item in list" :key="item.id" v-loading="listLoading">
+      <h2>{{ item.title }}</h2>
+      <div class="article-line">{{ item.simple }}</div>
+      <div class="display-flex">
+        <div class="div-size left-flex"><strong>重要程度：</strong>{{ item.important }}</div>
+        <div class="div-size right-flex"><strong>观看次数：</strong>{{ item.watch }}</div>
+      </div>
+    </div>
   </div>
 </template>
-
+<style>
+  .content{
+    color: #8A8A8A;
+  }
+  .div-size {
+    width: 200px;
+    height: 30px;
+    margin: 0;
+    font-size: 5px;
+    padding-top: 10px;
+  }
+  .left-flex{
+    width: 80%;
+  }
+  .right-flex{
+    width: 20%;
+    text-align: right;
+  }
+  .display-flex {
+  display: flex;
+}
+  .article-line {
+    width: 100%;
+    height: 16px;
+    line-height: 16px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    white-space:nowrap;
+}
+</style>
 <script>
 import { getPage } from '@/api/blog'
 export default {
   name: 'WorkBlog',
+  components: {
+  },
   data() {
     return {
       tableKey: 0,
@@ -46,16 +85,11 @@ export default {
       getPage(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
-
-        this.isOrNotOptions = response.options.isOrNotOptions.reduce((acc, cur) => {
-          acc[cur.code] = cur.name
-          return acc
-        }, {})
-
-        // Just to simulate the time of the request
-        setTimeout(() => {
-          this.listLoading = false
-        }, 1.5 * 1000)
+        this.listLoading = false
+        // this.isOrNotOptions = response.options.isOrNotOptions.reduce((acc, cur) => {
+        //   acc[cur.code] = cur.name
+        //   return acc
+        // }, {})
       })
     }
   }

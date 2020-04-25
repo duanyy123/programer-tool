@@ -48,6 +48,11 @@
               Edit
             </el-button>
           </router-link>
+          <router-link :to="'/example/create'">
+            <el-button type="primary" size="small" icon="el-icon-edit">
+              Create
+            </el-button>
+          </router-link>
         </template>
       </el-table-column>
     </el-table>
