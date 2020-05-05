@@ -524,7 +524,6 @@ export default {
         this.dialogSQLVisible = false
         if (response.code === 20000) {
           this.temp = response.data
-          this.temp.solvedSqlUrl = content
           const index = this.list.findIndex(v => v.id === this.temp.id)
           this.temp.needSQL = this.temp.solvedSqlUrl ? 1 : 0
           this.list.splice(index, 1, this.temp)

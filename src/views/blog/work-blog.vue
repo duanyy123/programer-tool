@@ -4,14 +4,28 @@
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="getList">
         查找
       </el-button>
-      <router-link :to="'/blog/create'">
+      <router-link :to="'/blog/create/work'">
         <el-button class="filter-item" type="primary" icon="el-icon-edit">
           新建
         </el-button>
       </router-link>
     </div>
     <div v-for="item in list" :key="item.id" v-loading="listLoading">
-      <h2>{{ item.title }}</h2>
+      <div class="display-flex" style="margin-top: 15px; margin-bottom: 15px">
+        <div class="div-size left-flex" style="font-size: 20px;">{{ item.title }}</div>
+        <div class="div-size right-flex">
+          <router-link :to="`/blog/create/work/${item.id}`">
+            <el-button class="filter-item" type="primary" size="mini" icon="el-icon-edit">
+              修改
+            </el-button>
+          </router-link>
+          <router-link :to="`/blog/watch/${item.title}/${item.id}`">
+            <el-button class="filter-item" type="primary" size="mini" icon="el-icon-tickets">
+              查看
+            </el-button>
+          </router-link>
+        </div>
+      </div>
       <div class="article-line">{{ item.simple }}</div>
       <div class="display-flex">
         <div class="div-size left-flex"><strong>重要程度：</strong>{{ item.important }}</div>
@@ -68,6 +82,7 @@ export default {
       listQuery: {
         page: 1,
         limit: 20,
+        type: 'BLOG_WORK',
         createTimeStart: undefined,
         createTimeEnd: undefined,
         updateTimeStart: undefined,
@@ -77,6 +92,9 @@ export default {
     }
   },
   created() {
+    this.getList()
+  },
+  activated() {
     this.getList()
   },
   methods: {

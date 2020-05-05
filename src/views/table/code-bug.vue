@@ -133,7 +133,9 @@
           <el-input v-model="temp.demoMsg" :autosize="{ minRows: 2, maxRows: 4}" type="textarea" placeholder="请输入" />
         </el-form-item>
         <el-form-item label="解决情况" prop="isSolved">
-          <el-input v-model="temp.isSolved" />
+          <el-select v-model="temp.isSolved" class="filter-item" placeholder="请选择">
+            <el-option v-for="item in solveTypeOptions" :key="item" :label="item" :value="item" />
+          </el-select>
         </el-form-item>
         <el-form-item label="解决人" prop="solvePerson">
           <el-input v-model="temp.solvePerson" />
@@ -322,14 +324,15 @@ export default {
     this.getList()
   },
   methods: {
+
     handleAvatarSuccess(response, file, fileList) {
       if (response.code === 20000) {
         this.temp.errorPhotoUrl = response.data.errorPhotoUrl
       }
     },
     closeUpload() {
-      this.$refs.upload.clearFiles()
-      // this.dialogUploadVisible = false
+      // this.$refs.upload.clearFiles()
+      this.dialogUploadVisible = false
     },
     handleRemove(file, fileList) {
       console.log(file, fileList)

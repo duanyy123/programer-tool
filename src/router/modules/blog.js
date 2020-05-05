@@ -6,7 +6,7 @@ const blogRouter = {
   path: '/blog',
   component: Layout,
   redirect: '/blog/complex-table',
-  name: 'Table',
+  name: 'Blog',
   meta: {
     title: '笔记',
     icon: 'icon'
@@ -38,10 +38,22 @@ const blogRouter = {
       name: 'CodeBlog',
       meta: { title: '编程笔记' }
     }, {
-      path: 'create',
+      path: 'create/:type/:id',
+      component: () => import('@/views/blog/create-blog'),
+      name: 'CreateBlog',
+      meta: { title: '修改笔记', icon: 'edit' },
+      hidden: true
+    }, {
+      path: 'create/:type',
       component: () => import('@/views/blog/create-blog'),
       name: 'CreateBlog',
       meta: { title: '新建笔记', icon: 'edit' },
+      hidden: true
+    }, {
+      path: 'watch/:title/:id',
+      component: () => import('@/views/blog/watch-blog'),
+      name: 'WatchBlog',
+      meta: { title: '查看笔记', icon: 'edit' },
       hidden: true
     }
   ]

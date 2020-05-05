@@ -16,8 +16,20 @@ import router from './router'
 import './icons' // icon
 import './permission' // permission control
 import './utils/error-log' // error log
-
+// import 'bootstrap'
+// import 'bootstrap/dist/css/bootstrap.css'
 import * as filters from './filters' // global filters
+
+// import VueWechatTitle from 'vue-wechat-title'
+// Vue.use(VueWechatTitle)
+
+// 根据路由设置标题
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  next()
+})
 
 /**
  * If you don't want to use mock-server
